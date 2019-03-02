@@ -1,0 +1,70 @@
+panda
+
+import panda as pd
+df = pd.read('...')
+df['...'].unique()
+df.to_csv('test.csv')
+
+numpy array
+fixed size, same type data
+
+import numpy as np
+a = np.array([0,1,2,3,4])
+
+type(a):numpy.ndarray
+
+a.dtype: dtype('int64')
+a.size: 5
+a.ndim: 1
+a.shape: (5,)
+
+a[0] = 100
+a:array([100,1,2,3,4])
+d = a[1:4]
+d[3:5] = 300,400
+
+b = np.array([3.1,11.02,213.2,5.2,6.2])
+b.dtype: dtype('float64')
+
+u = [1,0] v=[0,1]
+z = u+v = [1,1]
+
+for n,m in zip(u,v):    #zip(u,v): [(1,0),(0,1)]
+    z.append(n+m)
+
+u = np.array([1,0])
+v = np.array([0,1])
+z = u+v
+
+z=2*u
+z = u*v
+result = np.dot(u,v)
+z = u+1
+a = np.array([1,-1,1,-1])
+mean_a = a.mean()
+max_b = b.max()
+std_c = c.std()
+
+np.pi
+x = np.array(0,np.pi/2,np.pi)
+y = np.six(x)
+np.linspace(-2,2,num=10)
+x = np.linspace(0,2*np.pi,num=100)
+y=np.sin(x)
+
+import matplotlib.pyplot as plt
+plt.plot(x,y)
+
+2d np array
+a = [[11,12,13],[21,22,23],[31,32,33]]
+A = np.array(a)
+A.ndim:2
+A.shape:(3,3)
+A.size:9
+A[0][0]:11
+A[0,0:2]
+A[0:2,0]
+X+Y
+Z=X*2
+X*Y
+np.dot(A,B)
