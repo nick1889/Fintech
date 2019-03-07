@@ -1,0 +1,32 @@
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x_data,y_data,test_size=0.3,random_state=0)
+
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(lr,x_data,y_data,cv=3)
+np.mean(scores)
+
+from sklearn.model_selection import cross_val_predict
+yhat = cross_val_predict(lr2e,x_data,y_data,cv=3)
+
+from sklearn.linear_model import Ridge
+RidgeModel = Ridge(alpha=0.1)
+RidgeModel.fit(X,y)
+Yhat = RidgeModel.predict(X)
+
+Grid Search
+parameters = [{'alpha':[1,10,100,1000]}]
+
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import GridSearchCV
+parameters = [{'alpha':[1,10,100,1000]}]
+RidgeModel = Ridge()
+Grid1=GridSearchCV(RidgeModel,parameters,cv=4)
+Grid1.fit(x_data[['','','','']],y_data)
+Grid1.best_estimator_
+scores=Grid1.cv_results_
+scores['mean_test_score']
+
+para = [{'alpha':[1,10,100,1000],'normalize':[True,False]}]
+Grid2 = GridSearchCV(Ridge(), parameters2,cv=4)
+x_data = df.drop('price',axis=1)
+

@@ -1,0 +1,105 @@
+import panda as pd
+url = '...'
+df = pd.read_csv(url, header = None)
+
+df.head(n)
+df.tail(n)
+
+headers = ['...','...',...]
+df.columns = headers
+
+df.to_csv('...')
+to_json('...')
+to_excel('...')
+to_sql('...')
+
+Descriptive Statistics
+df.describe()  #returns a statistical summary of numeric-typed columns
+df.describe(include='all')
+df.describe(include=['object'])
+df.info() 
+value_counts()
+
+df.dropna(subset=["price"], axis=0) #drop missing values
+
+mising values: '?' 'N/A'
+drop the variable/data entry
+replace it with an average/by frequency/...
+
+df.dropna(subset=['price'], axis=0, inplace=True)
+axis=0 drops the row
+axis=1 drops the column
+
+missing_data = df.isnull()
+for column in missing_data.columns.values.tolist():
+    print(column)
+    print (missing_data[column].value_counts())
+    print("")
+
+df.replace(missing_vale, new_value)
+mean = df['...'].mean()
+df['...'].replace(np.nan, mean)
+
+df['...'] = 235/df['...']
+df.rename(columns={'x':'y'},inplace=True)
+df.astype()
+
+normalization: feature scaling/min-max/Z-score
+df['...'] = df['...']/df['...'].max()
+...
+
+Binning
+price -> low medium high
+bins = np.linspace(min(df['price']),max(df['price']),4)
+group_names = ['L','M','H']
+df['price-binned'] = pd.cut(df['price'],bins,labels=group_names,include_lowest=True)
+
+Categorical variables -> Numerical values  "One-hot encoding"
+pandas.get_dummies()
+pd.get_dummies(df['fuel'])
+
+df['...'].value_counts().idxmax()
+df['drive-wheels'].value_counts().to_frame()
+
+df[['...']] = df[['...']].astype('int')
+
+df = pd.concat([df,dummy_variable_1], axis=1)
+
+Box Plot: sns.boxplot(x='drive-wheels',y='price',data=df )
+
+Scatter Plot: 
+plt.scatter(x,y)
+plt.title('...')
+plt.xlabel('...')
+plt.ylabel('...')
+
+df = df[['...','...','price']]
+df.Groupby(['...','...'], as_index = False).mean()
+df.pivot(index='...',columns='...')
+grouped_pivot = grouped_pivot.fillna(0)  #fill missing values with 0
+
+Heatmap
+plt.pcolor(df_pivot,cmap='RdBu')
+plt.colorbar()
+plt.show()
+
+F-test score  
+    Large F imply strong correlation between variable categories and target variable
+p-value
+
+df_anova = df[['make','price']]
+grouped_anova=df_anova.groupby(['make'])
+
+from scipy import stats
+anova_result_1=stats.f_oneway(grouped_anova.get_group('honda')['price'], grouped_anova.get_group('subaru')['price'])
+
+pearson_coef, p_value = stats.pearsonr(df['wheel-base'], df['price'])
+print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value)  
+
+
+sns.regplot(x='engine-size',y='price',data=df)
+plt.ylim(0,)
+
+Calculate the correlation: df.corr()
+import seaborn as sns
+sns.replot(x='engine-size',y='price',data=df)
